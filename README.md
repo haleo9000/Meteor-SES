@@ -9,9 +9,13 @@ Server side code:
 ```
 Email.configSES({
 	AWSAccessKeyID: '<youraccesskey>,
-    AWSSecretKey: '<accesskey>'
+    AWSSecretKey: '<accesskey>',
+    AWSRegion: '<region - optional>'
 });
 ```
+
+Note on AWSRegion: If left out, defaults to 'us-east-1'
+
 
 ##Sending Email
 
