@@ -1,10 +1,10 @@
-var AWSAccessKeyID;
-var AWSSecretKey;
+var AWSAccessKeyID, AWSSecretKey, AWSRegion;
 
 var sendEmail = function(params, callback) {
 	var transport = Nodemailer.createTransport("SES", {
-	    AWSAccessKeyID: AWSAccessKeyID,
-	    AWSSecretKey: AWSSecretKey
+	    accessKeyId: AWSAccessKeyID,
+	    secretAccessKey: AWSSecretKey,
+	    region: AWSRegion
 	});
 
 	if(!callback) callback = function(err,result) {
@@ -17,8 +17,9 @@ var sendEmail = function(params, callback) {
 
 Email.configSES = function(params) {
 
-	AWSSecretKey = params.AWSSecretKey;
-	AWSAccessKeyID = params.AWSAccessKeyID;
+	AWSSecretKey = params.AWSSecretKey; //REQUIRED
+	AWSAccessKeyID = params.AWSAccessKeyID; //REQUIRED
+	AWSRegion = (params.AWSRegion) ? params.AWSRegion:'us-east-1'; //OPTIONAL, defaults to us-east-1
 
 	Email.send = sendEmail;
 }
